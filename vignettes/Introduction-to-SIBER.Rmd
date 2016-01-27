@@ -7,11 +7,16 @@ vignette: >
   %\VignetteIndexEntry{Introduction to SIBER}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{viridis}
 ---
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>", 
-                      fig.width = 5, fig.height = 5)
+                      fig.width = 6, fig.height = 5)
+library(viridis)
+palette(viridis(3))
+
+library(SIBER)
 ```
 
 ## SIBER introduction and guide
@@ -129,13 +134,12 @@ plotSiberObject(siber.example,
                   cex = 0.5
                   )
 
+
+
 # Calculate sumamry statistics for each group: TA, SEA and SEAc
 group.ML <- groupMetricsML(siber.example)
 print(group.ML)
 
-# Calculate the various Layman metrics on each of the communities.
-community.ML <- communityMetricsML(siber.example) 
-print(community.ML)
 
 # You can add more ellipses by directly calling plot.group.ellipses()
 # Add an additional p.interval % prediction ellilpse
@@ -146,6 +150,39 @@ plotGroupEllipses(siber.example, n = 100, p.interval = 0.95,
 # by specifying ci.mean = T along with whatever p.interval you want.
 plotGroupEllipses(siber.example, n = 100, p.interval = 0.95, ci.mean = T,
                     lty = 1, lwd = 2)
+
+
+
+```
+
+Alternativly, we may wish to focus on comparing the two communities represented in these plots by the open circles and the open triangles. To illustrate these groupings, we might draw the convex hull between the means of each of the three groups comprising each community. Additionally, I have highlighted the location of each group by adding the 95% confidence interval of their bivariate mean.
+
+```{r}
+# A second plot provides information more suitable to comparing
+# the two communities based on the community-level Layman metrics
+
+# this time we will make the points a bit smaller by 
+# cex = 0.5
+plotSiberObject(siber.example,
+                  ax.pad = 2, 
+                  hulls = T, community.hulls.args, 
+                  ellipses = F, group.ellipses.args,
+                  group.hulls = F, group.hull.args,
+                  bty = "L",
+                  iso.order = c(1,2),
+                  xlab=expression({delta}^13*C~'\u2030'),
+                  ylab=expression({delta}^15*N~'\u2030'),
+                  cex = 0.5
+                  )
+
+# or you can add the XX% confidence interval around the bivariate means
+# by specifying ci.mean = T along with whatever p.interval you want.
+plotGroupEllipses(siber.example, n = 100, p.interval = 0.95,
+                  ci.mean = T, lty = 1, lwd = 2) 
+
+# Calculate the various Layman metrics on each of the communities.
+community.ML <- communityMetricsML(siber.example) 
+print(community.ML)
 
 ```
 
@@ -181,7 +218,7 @@ ellipses.posterior <- siberMVN(siber.example, parms, priors)
 ## Comparing among groups using the Standard Ellipse Area
 When comparing individual groups with each other, be it within a single community, or groups among communities, the Standard Ellipse Area (SEA) is the recommended method. Since the multivariate normal distributions have already been fitted to each group, it only remains to calculate the SEA on the posterior distribution of covariance matrice for each group, thereby yielding the Bayesian SEA or SEA-B. We can also use the summary statistics we calcluated earlier to add the maximum likelihood estimates of SEA-c to the Bayesian esimates.
 
-Plotting is via the function `siberDensityPlot()` which is essentially the same as `siardensityplot()` from the older version of SIAR.
+Plotting is via the function `siberDensityPlot()` which is essentially the same as `siardensityplot()` from the older version of SIAR. Credible intervals can be extracted by calling the function `hdr` from the `hdrcde` package.
 
 ```{r}
 
@@ -200,10 +237,31 @@ siberDensityPlot(SEA.B, xticklabels = colnames(group.ML),
 # Add red x's for the ML estimated SEA-c
 points(1:ncol(SEA.B), group.ML[3,], col="red", pch = "x", lwd = 2)
 
+# Calculate some credible intervals 
+cr.p <- c(0.95, 0.99) # vector of quantiles
+
+# call to hdrcde:hdr using lapply()
+SEA.B.credibles <- lapply(
+  as.data.frame(SEA.B), 
+  function(x,...){tmp<-hdrcde::hdr(x)$hdr},
+  prob = cr.p)
+
+# do similar to get the modes, taking care to pick up multimodal posterior
+# distributions if present
+SEA.B.modes <- lapply(
+  as.data.frame(SEA.B), 
+  function(x,...){tmp<-hdrcde::hdr(x)$mode},
+  prob = cr.p, all.modes=T)
+
+
 ```
 
 ## Comparison of entire communities using the Layman metrics
 Entire communities can be compared by recognising that convex hulls (or any other metric) based on the centroids of each group are subject to uncertainty in the location of the centroids. We can exploit this and calculate the distribution of convex hull areas (and the other 5 metrics) based on the posterior distribution of the means of each group's `x` and `y` data.
+
+```{r}
+
+```
 
 The first thing to do is to extract the posterior means from the mcmc.list object that jags creates to make plotting and analysis easier. Thereafter, we can plot their distribution using highest density region boxplots to visualise the credible intervals that describe it.
 
