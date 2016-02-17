@@ -23,12 +23,17 @@ groupMetricsML <- function(siber){
   # prepare a matrix for storing the results.
   # Each column is a group. Each row a different metric
   
-  # community / group naming 
-  tmp.names <- unique(paste(siber$original.data[,"community"],
-                            siber$original.data[,"group"],
-                            sep=".")
-                      )
-  
+  # community / group naming by looping over communites and pasting on the 
+  # correct group names within that community.
+  tmp.names <- NULL
+  for (i in 1:siber$n.communities){
+    tmp.names <- c(tmp.names, 
+                   paste(siber$all.communities[i], 
+                         siber$group.names[[i]], sep = ".")
+                   )
+  }
+
+  # prepare matrix for storing results.
   out <- matrix(NA, nrow = 3, ncol = sum(siber$n.groups[2,]),
                 dimnames = list(c("TA", "SEA", "SEAc"), tmp.names)
                 )
@@ -46,7 +51,7 @@ groupMetricsML <- function(siber){
       out["SEA", cnt] <- tmp.SEA$SEA
       
       # extract the sample size for this group
-      n <- siber$sample.sizes[i,j]
+      n <- siber$sample.sizes[i,paste(siber$group.names[[i]][j])]
       
       out["SEAc", cnt] <- tmp.SEA$SEA * (n - 1) / ( n - 2) 
       
@@ -55,7 +60,7 @@ groupMetricsML <- function(siber){
       # calculate the hull area around the jth group in the 
       # ith community
       # find the indices for the jth group
-      idx <- siber$raw.data[[i]]$group == j
+      idx <- siber$raw.data[[i]]$group == siber$group.names[[i]][j]
       
       ch <- siberConvexhull( siber$raw.data[[i]][idx, 1], 
                               siber$raw.data[[i]][idx, 2])

@@ -1,3 +1,10 @@
+# SIBER 2.0.2.9000
++ To be implemented...
+
+# SIBER 2.0.2
++ Bug in Group labels as character strings fixed
++ Community labels as character strings now implemented
+
 # SIBER 2.0.1
 + Group labels can now be strings and do not have to be sequential integers (#14)
 

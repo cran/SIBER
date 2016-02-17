@@ -34,10 +34,15 @@ if (!all(names(data.in) == c("iso1", "iso2", "group", "community"))){
 }
 
 # error if community is not a sequential numeric vector
-if (!is.numeric(data.in$community)){
-  stop('The community column must be a sequential numeric vector 
-       indicating the community membership of each observation.')
-} 
+# if (!is.numeric(data.in$community)){
+#   stop('The community column must be a sequential numeric vector 
+#        indicating the community membership of each observation.')
+# } 
+  
+# force group and community variable to be factors
+data.in$group <- as.factor(data.in$group)
+data.in$community <- as.factor(data.in$community)
+  
 # create an object that is a list, into which the raw data, 
 # its transforms, and various calculated metrics can be stored.
 siber <- list()
@@ -50,6 +55,9 @@ siber$original.data <- data.in
 
 # store all the grouping labels
 siber$all.groups <- levels(data.in$group)
+
+# store all the community labels
+siber$all.communities <- levels(data.in$community)
 
 
 # some basic summary stats helpful for plotting
@@ -80,8 +88,8 @@ if (any(siber$sample.sizes < 5, na.rm = TRUE)){
 # store the raw data as list split by the community variable
 # and rename the list components
 siber$raw.data <- split(data.in, data.in$community)
-names(siber$raw.data) <- paste("community", 
-                               unique(data.in$community), sep = "")
+#names(siber$raw.data) <- paste("community", 
+#                               unique(data.in$community), sep = "")
 
 # how many communities are there
 siber$n.communities <- length(unique(data.in$community))
@@ -131,7 +139,18 @@ for (i in 1:siber$n.communities) {
 	    siber$ML.cov[[i]][,,j] <- cov.tmp
 	
 	} # end of loop over groups
-} # end of loop over
+  
+  # Add names to the dimensions of the array
+  dimnames(siber$ML.mu[[i]]) <- list(NULL, 
+                                     c("iso1", "iso2"), 
+                                     siber$group.names[[i]])
+  dimnames(siber$ML.cov[[i]]) <- list(c("iso1", "iso2"), 
+                                      c("iso1", "iso2"), 
+                                      siber$group.names[[i]])
+} # end of loop over communities
+
+names(siber$ML.mu) <- siber$all.communities
+names(siber$ML.cov) <- siber$all.communities
 
 # ------------------------------------------------------------------------------
 # create z-score transformed versions of the raw data.
