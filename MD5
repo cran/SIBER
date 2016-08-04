@@ -1,6 +1,6 @@
-34b11eb82888bb2dd4bbbccea214d0d0 *DESCRIPTION
+d41f6da48ffc5b1f783792126624ac5b *DESCRIPTION
 e569b83f16a4b918142d435607142981 *NAMESPACE
-baee4b30d887f0d7ab348e1591d97fe9 *NEWS.md
+ba59c918445326dfb638522a9e7c5cd8 *NEWS.md
 88ccb3715900d5ad46f0b633a5d80bd6 *R/SIBER.R
 a18e4ebca83746c78a0085a0e9571110 *R/addEllipse.R
 f2ad2e889e65c3f5614895c9dd6e2bf1 *R/bayesianLayman.R
@@ -15,8 +15,8 @@ bdad2388f73ceb54028b7bebdced9541 *R/ellipseBackTransform.R
 9b68271daf47c4bc688f95e7535216d3 *R/generateSiberData.R
 fa74b240f4f68f43aa04cbd8b65f84f3 *R/generateSiberGroup.R
 0b108b20cfc02434a4cf77f697425287 *R/groupMetricsML.R
-44b2a1ae17b5010ee072021747017222 *R/hullArea.R
-4745e0c2e8585aeea2ddf53a46ed4ca7 *R/laymanMetrics.R
+44b2a1ae17b5010ee072021747017222 *R/hullarea.R
+4745e0c2e8585aeea2ddf53a46ed4ca7 *R/laymanmetrics.R
 12a7f7c06785637a9bdff76108b3890c *R/plotCommunityHulls.R
 f6ce92177fe508752da9c8d5dd5872e8 *R/plotGroupEllipses.R
 63d46320db14df1051424510024d7046 *R/plotGroupHulls.R
@@ -27,12 +27,15 @@ ba60dd3692f1684ed32e900bf87fc412 *R/siberConvexhull.R
 38cb162ef3130f28a751cb6624fa2116 *R/siberMVN.R
 c4cc7a2f0dc707edb3060c722aaa436a *R/siberdensityplot.R
 c8b02560368c26d26f225c00834153a7 *R/sigmaSEA.R
-22fe570ac1b8ed95d6b038dc9ce8eb8d *build/vignette.rds
+d4be83d659b6c393576043109cbe8038 *build/vignette.rds
 30581d8cf3a4a3d626c71645f253b8a7 *data/demo.siber.data.rda
 a94e1a1332fec30cd7f860d13dc043d9 *inst/CITATION
+e538df7a04cb4ed4bb2f22663499cd22 *inst/doc/Customising-Plots-Manually.R
+d2ab134bbfd9136a0a2135691149c5e8 *inst/doc/Customising-Plots-Manually.Rmd
+b26d25df70a4f7b9f43a869bb98f6f34 *inst/doc/Customising-Plots-Manually.html
 e876914be6dcb7eec03d852e1af06fb0 *inst/doc/Introduction-to-SIBER.R
 0fa723e17d16bba73d44dc79a9cd799f *inst/doc/Introduction-to-SIBER.Rmd
-47d618bc4a1d60e41bc83a54d3c742ee *inst/doc/Introduction-to-SIBER.html
+889b7dad8badf7a6c99d16765939a796 *inst/doc/Introduction-to-SIBER.html
 6474734bbe84fdc32a2ac72920fa30cb *inst/extdata/demo.siber.data.csv
 3e1e584591c3287f268a62c8fe6025be *inst/extdata/test.community.names.csv
 55c5298aa31b94013e7fec99c7537aba *inst/extdata/test.group.names.csv
@@ -50,8 +53,8 @@ de5484b25f9f74de73c41ebae0e9df99 *man/generateSiberCommunity.Rd
 a63a0bf54f69235e8a6e91006c03b4af *man/generateSiberData.Rd
 a3f6933b1ef54a4ed0f92e0d35e88ee8 *man/generateSiberGroup.Rd
 b1699e52e1bec5e59c72c004db0fbb06 *man/groupMetricsML.Rd
-39f4404352019135f91a9ffe96a62b0e *man/hullArea.Rd
-7e7cccc3c1b45f732804d204d63cc252 *man/laymanMetrics.Rd
+c80477d1c0971ba7c6888e63b4cff077 *man/hullArea.Rd
+5b8570a56d2d39245c871e73bb01e357 *man/laymanMetrics.Rd
 e3eb4bd40b511d14be17a56a5aa09559 *man/plotCommunityHulls.Rd
 68d94cf2450af960691e6c3992502c2c *man/plotGroupEllipses.Rd
 b6ffbc01d656f00c8547c0eb3c0132b3 *man/plotGroupHulls.Rd
@@ -62,6 +65,7 @@ a8b471ad124a722af4ab9b4997989da0 *man/siberDensityPlot.Rd
 97253a702e4667c32a7ffb428d814d40 *man/siberEllipses.Rd
 f603a600f74d997324cb140609bd2987 *man/siberMVN.Rd
 b3c3d6d34084504242d460c0901afe05 *man/sigmaSEA.Rd
+d2ab134bbfd9136a0a2135691149c5e8 *vignettes/Customising-Plots-Manually.Rmd
 0fa723e17d16bba73d44dc79a9cd799f *vignettes/Introduction-to-SIBER.Rmd
 95fce877671efca15aa266898c2447a6 *vignettes/test-nonnumeric-community-labels.Rmd
 2f8c3a721d30d672593adf4832568c5e *vignettes/test-nonnumeric-group-labels.Rmd
