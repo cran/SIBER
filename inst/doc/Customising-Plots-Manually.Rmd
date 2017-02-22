@@ -1,12 +1,12 @@
 ---
 title: "Customising Plots Manually"
 author: "Andrew L Jackson"
-date: "3 August 2016"
-output: html_document
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Customising Plots Manually}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+  \usepackage[utf8]{inputenc}
   %\VignetteDepends{viridis}
 ---
 
