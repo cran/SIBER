@@ -5,6 +5,8 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>",
 
 ## ----gendata, echo = TRUE------------------------------------------------
 
+library(SIBER)
+
 # set the random seed generator so we get consistent results each time 
 # we run this code.
 set.seed(2)

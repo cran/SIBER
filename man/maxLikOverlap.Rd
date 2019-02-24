@@ -5,8 +5,8 @@
 \title{Calculate the overlap between two ellipses based on the maximum likelihood 
 fitted ellipses.}
 \usage{
-maxLikOverlap(ellipse1, ellipse2, siber.object, p.interval = 0.95, n = 100,
-  do.plot = FALSE)
+maxLikOverlap(ellipse1, ellipse2, siber.object, p.interval = 0.95,
+  n = 100, do.plot = FALSE)
 }
 \arguments{
 \item{ellipse1}{character code of the form \code{"x.y"} where \code{x} is an 
@@ -14,7 +14,7 @@ integer indexing the community, and \code{y} an integer indexing the group
 within that community. This specifies the first of two ellipses whose 
 overlap will be compared.}
 
-\item{ellipse2}{same as \code{ellipse1} specifiying a second ellipse.}
+\item{ellipse2}{same as \code{ellipse1} specifying a second ellipse.}
 
 \item{siber.object}{an object created by  \code{\link{createSiberObject}} 
 which contains the ML estimates for the means and covariance matrices for 
@@ -28,7 +28,7 @@ Defaults to \code{100} as per \code{\link{addEllipse}}.}
 
 \item{do.plot}{logical switch to determine whether the corresponding ellipses
 should be plotted or not. A use-case would be in conjunction with a low 
-numebr od \code{draws} so as to visualise a relatively small number of the 
+numbered \code{draws} so as to visualise a relatively small number of the 
 posterior ellipses. Defaults to \code{FALSE}.}
 }
 \value{

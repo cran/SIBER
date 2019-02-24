@@ -1,23 +1,26 @@
 Package: SIBER
 Type: Package
 Title: Stable Isotope Bayesian Ellipses in R
-Version: 2.1.3
-Depends: R (>= 3.4.0)
-Imports: hdrcde, graphics, grDevices, mnormt, rjags, spatstat.utils,
-        stats, viridis, tidyr, dplyr, ggplot2, magrittr
-Suggests: knitr
+Version: 2.1.4
+Depends: R (>= 3.5.0)
+SystemRequirements: JAGS (>= 4.1)
+Imports: coda, ellipse, hdrcde, graphics, grDevices, mnormt, rjags,
+        spatstat, spatstat.utils, stats, viridis, tidyr, dplyr,
+        ggplot2, magrittr, purrr
+Suggests: knitr, rmarkdown
 Author: Andrew Jackson and Andrew Parnell
-Maintainer: Andrew Jackson <a.jackson@tcd.ie>
+Maintainer: Andrew Jackson <jacksoan@tcd.ie>
 Description: Fits bi-variate ellipses to stable isotope data using Bayesian
     inference with the aim being to describe and compare their isotopic
     niche.
 License: GPL (>= 2)
+Language: en-GB
 LazyLoad: yes
 LazyData: true
 Encoding: UTF-8
-Packaged: 2017-04-28 14:12:45 UTC; andrewjackson
+Packaged: 2019-02-22 14:37:41 UTC; andrew
 NeedsCompilation: yes
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Repository: CRAN
-Date/Publication: 2017-04-28 22:22:58 UTC
+Date/Publication: 2019-02-24 16:00:14 UTC
