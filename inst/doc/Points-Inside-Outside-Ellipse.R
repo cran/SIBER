@@ -1,9 +1,9 @@
-## ---- echo = FALSE-------------------------------------------------------
+## ---- echo = FALSE------------------------------------------------------------
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>", 
                       fig.width = 6, fig.height = 5)
 
 
-## ----gendata, echo = TRUE------------------------------------------------
+## ----gendata, echo = TRUE-----------------------------------------------------
 
 library(SIBER)
 
@@ -18,7 +18,7 @@ n <- 30
 Y <- generateSiberGroup(n.obs = 30)
 
 
-## ----warpdata, echo = TRUE-----------------------------------------------
+## ----warpdata, echo = TRUE----------------------------------------------------
 
 # plot this example data with column 2 by column 1
 plot(Y[,2] ~ Y[,1], type = "p", asp = 1, 
@@ -67,7 +67,7 @@ points(test.these[,2] ~ test.these[,1],
        cex = 2)
 
 
-## ----highdim, echo = TRUE------------------------------------------------
+## ----highdim, echo = TRUE-----------------------------------------------------
 # set the random seed generator so we get consistent results each time 
 # we run this code.
 #set.seed(2)

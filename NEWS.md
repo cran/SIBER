@@ -1,3 +1,12 @@
+# SIBER 2.1.4.9000
++ in development
+
+# SIBER 2.1.5
++ Fixed bug in `createSiberObject` that meant z-scores could end up out of sync with their respective grouping variable. Thanks to Edward Doherty for pointing out this odd behaviour leading to bug discovery 2020/11/5. Ultimately the entire package needs to be recoded in `tidyverse`.
++ Fixed bug in `plotSiberObject` that meant both x.limits and y.limits had to be specified to invoke manual axis setting. Either or can now be specified on their own with the other reverting to the default which is the max and min values of the corresponding data axis +/- the specified `ax.pad` value which defaults to 1.
++ Allow users to specify a matrix of colours to define each group and each confidence boxplot uniquely using `siberDensityPlot(Y, clr = ...)`
+
+
 # SIBER 2.1.4
 + fixed "vignettes with duplicate titles" warning
 + added new vignette `Plot-posterior-ellipses` that shows how to plot multiple posterior ellipse draws on top of data using `ggplot2`.

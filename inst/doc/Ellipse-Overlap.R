@@ -1,10 +1,10 @@
-## ---- echo = FALSE-------------------------------------------------------
+## ---- echo = FALSE------------------------------------------------------------
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>", 
                       fig.width = 6, fig.height = 5)
 
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 # remove previously loaded items from the current environment and remove previous graphics.
 rm(list=ls())
 graphics.off()
@@ -64,7 +64,7 @@ plotSiberObject(siber.example,
                   )
 
 
-## ---- MLoverlap----------------------------------------------------------
+## ---- MLoverlap---------------------------------------------------------------
 # In this example, I will calculate the overlap between ellipses for groups 2
 # and 3 in community 1 (i.e. the green and yellow open circles of data).
 
@@ -92,7 +92,7 @@ prop.95.over <- ellipse95.overlap[3] / (ellipse95.overlap[2] +
                                           ellipse95.overlap[3])
 
 
-## ---- bayesOverlap-------------------------------------------------------
+## ---- bayesOverlap------------------------------------------------------------
 # options for running jags
 parms <- list()
 parms$n.iter <- 2 * 10^4   # number of iterations to run the model for

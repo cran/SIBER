@@ -20,8 +20,13 @@
 #' @param ylab a string of the y-axis label. Defaults to \code{"Value"}.
 #' @param xticklabels a vector of strings to override the x-axis tick labels.
 #' @param yticklabels a vector of strings to override the y-axis tick labels.
-#' @param clr a vector of colours to use for shading each of the box regions.
-#'   Defaults to greyscale \code{grDevices::gray((9:1)/10)}.
+#' @param clr a matrix of colours to use for shading each of the box regions.
+#'   Defaults to greyscale \code{grDevices::gray((9:1)/10)} replicated for as
+#'   many columns as there are in \code{dat}. When specified by the user, rows
+#'   contain the colours of each of the confidence regions specified in
+#'   \code{probs} and columns represent ecah of the columns of data in
+#'   \code{dat}. In this way, one could have shades of blue, red and yellow for
+#'   each of the groups.
 #' @param scl a scalar multiplier to scale the box widths. Defaults to 1.
 #' @param xspc a scalar determining the amount of spacing between each box.
 #'   Defaults to 0.5.
@@ -54,25 +59,47 @@
 #' @return A new figure window.
 #'
 #' @examples
+#' # A basic default greyscale density plot
 #' Y <- matrix(stats::rnorm(1000), 250, 4)
 #' siberDensityPlot(Y)
+#' 
+#' # A more colourful example
+#' my_clrs <- matrix(c("lightblue", "blue", "darkblue",
+#' "red1", "red3", "red4",
+#' "yellow1", "yellow3", "yellow4",
+#' "turquoise", "turquoise3", "turquoise4"), nrow = 3, ncol = 4)
+#' siberDensityPlot(Y, clr = my_clrs)
+#' 
 #' @export
 
 
 
 siberDensityPlot <- function (dat, probs = c(95, 75, 50),
-                             xlab = "Group", ylab = "Value", 
-                             xticklabels = NULL, yticklabels = NULL, 
-                             clr = grDevices::gray((9:1)/10), 
-                             scl = 1, xspc = 0.5, prn = F, 
-                             ct = "mode", ylims = NULL, 
-                             lbound = -Inf, ubound = Inf, main = "", 
-                             ylab.line = 2, ...) 
+                              xlab = "Group", ylab = "Value", 
+                              xticklabels = NULL, yticklabels = NULL, 
+                              clr = matrix(rep(grDevices::gray((9:1)/10),
+                                               ncol(dat)), 
+                                           nrow = 9, 
+                                           ncol = ncol(dat)), 
+                              scl = 1, xspc = 0.5, prn = F, 
+                              ct = "mode", ylims = NULL, 
+                              lbound = -Inf, ubound = Inf, main = "", 
+                              ylab.line = 2, ...) 
 {
   n <- ncol(dat)
   if (is.null(ylims)) {
     ylims <- c(min(dat) - 0.1 * min(dat), max(dat) + 0.1 * 
                  (max(dat)))
+  }
+  
+  # check that the matrix of colours is of sufficient size
+  if (ncol(dat) > ncol(clr)) {
+    stop("number of columns of matrix `clr` is insufficient for number of 
+         groups. There should be at least as many columns in `clr` 
+         as there are in `dat`")}
+  if (nrow(clr) < length(probs)) {
+    stop("Number of rows of matrix `clr` is insufficient for number of 
+         specified confidence regions in argument `probs`")
   }
   
   # set up a blank plot
@@ -96,7 +123,7 @@ siberDensityPlot <- function (dat, probs = c(95, 75, 50),
   else {
     graphics::axis(side = 1, at = 1:n, labels = (xticklabels))
   }
-  clrs <- rep(clr, 5)
+  # clrs <- rep(clr, 5)
   for (j in 1:n) {
     temp <- hdrcde::hdr(dat[, j], probs, h = stats::bw.nrd0(dat[, j]))
     line_widths <- seq(2, 20, by = 4) * scl
@@ -120,7 +147,7 @@ siberDensityPlot <- function (dat, probs = c(95, 75, 50),
                           min(c(max(temp2[!is.na(temp2)]), ubound)), 
                           min(c(max(temp2[!is.na(temp2)]), ubound)), 
                           max(c(min(temp2[!is.na(temp2)]), lbound))), 
-                        col = clrs[k])
+                        col = clr[k, j])
       if (ct == "mode") {
         graphics::points(j, temp$mode, pch = 19)
       }

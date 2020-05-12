@@ -1,10 +1,10 @@
-## ----setup---------------------------------------------------------------
+## ----setup--------------------------------------------------------------------
 
 library(SIBER)
 library(coda)
 
 
-## ----basic-model---------------------------------------------------------
+## ----basic-model--------------------------------------------------------------
 # load in the included demonstration dataset
 data("demo.siber.data")
 #
@@ -44,7 +44,7 @@ ellipses.posterior <- siberMVN(siber.example, parms, priors)
 
 
 
-## ----test-convergence----------------------------------------------------
+## ----test-convergence---------------------------------------------------------
 
 # get a list of all the files in the save directory
 all.files <- dir(parms$save.dir, full.names = TRUE)

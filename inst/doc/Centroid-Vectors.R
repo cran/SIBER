@@ -1,11 +1,11 @@
-## ----setup, echo = FALSE-------------------------------------------------
+## ----setup, echo = FALSE------------------------------------------------------
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>", 
                       fig.width = 6, fig.height = 5)
 
 library(viridis)
 palette(viridis(3))
 
-## ----load-data-----------------------------------------------------------
+## ----load-data----------------------------------------------------------------
 # remove previously loaded items from the current environment and remove previous graphics.
 rm(list=ls())
 graphics.off()
@@ -50,7 +50,7 @@ plotSiberObject(siber.example,
 
 
 
-## ----fit-mvn-------------------------------------------------------------
+## ----fit-mvn------------------------------------------------------------------
 
 # options for running jags
 parms <- list()
@@ -74,7 +74,7 @@ priors$tau.mu <- 1.0E-3
 ellipses.posterior <- siberMVN(siber.example, parms, priors)
 
 
-## ----extract-centroids---------------------------------------------------
+## ----extract-centroids--------------------------------------------------------
 # extract the centroids from the fitted model object
 centroids <- siberCentroids(ellipses.posterior)
 
@@ -84,7 +84,7 @@ angles_distances <- allCentroidVectors(centroids, do.plot = FALSE)
 
 
 
-## ----ggplot-polar, fig.width=9-------------------------------------------
+## ----ggplot-polar, fig.width=9------------------------------------------------
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 # function to do the histograms on each group
@@ -116,7 +116,7 @@ all.roses <- ggplot(data = hist.by.groups, aes(x = mids, y = counts.stdzd)) +
 print(all.roses)
 
 
-## ----polar-density, fig.width = 10, fig.height = 7-----------------------
+## ----polar-density, fig.width = 10, fig.height = 7----------------------------
 
 median_vectors <- dplyr::summarise(group_by(angles_distances, comparison),
           medAngle = median(angles), medDist = median(distances))

@@ -4,8 +4,13 @@
 \alias{generateSiberData}
 \title{A utility function to simulate isotope data for several communities}
 \usage{
-generateSiberData(n.groups = 3, n.communities = 2, n.obs = 30,
-  mu.range = c(-1, 1, -1, 1), wishSigmaScale = 1)
+generateSiberData(
+  n.groups = 3,
+  n.communities = 2,
+  n.obs = 30,
+  mu.range = c(-1, 1, -1, 1),
+  wishSigmaScale = 1
+)
 }
 \arguments{
 \item{n.groups}{the an integer specifying the number of groups per community 
@@ -29,7 +34,7 @@ to \code{c(-1, 1, -1, 1)}.}
 }
 \value{
 A data.frame object comprising a column of x and y data, a group 
-  indentifying column and a community identifying column, all of which are 
+  identifying column and a community identifying column, all of which are 
   numeric.
 }
 \description{

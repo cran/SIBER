@@ -1,4 +1,4 @@
-## ----setup---------------------------------------------------------------
+## ----setup--------------------------------------------------------------------
 
 library(SIBER)
 library(ggplot2)
@@ -7,7 +7,7 @@ library(ellipse)
 
 
 
-## ----basic-model---------------------------------------------------------
+## ----basic-model--------------------------------------------------------------
 # load in the included demonstration dataset
 data("demo.siber.data")
 #
@@ -48,7 +48,7 @@ siberDensityPlot(SEA.B, xticklabels = colnames(group.ML),
                 )
 
 
-## ----create-ellipse-df---------------------------------------------------
+## ----create-ellipse-df--------------------------------------------------------
 
 # how many of the posterior draws do you want?
 n.posts <- 10
@@ -114,7 +114,7 @@ ellipse_df <- dplyr::rename(ellipse_df, iso1 = x, iso2 = y)
 
 
 
-## ----plot-data-----------------------------------------------------------
+## ----plot-data----------------------------------------------------------------
 first.plot <- ggplot(data = demo.siber.data, aes(iso1, iso2)) +
   geom_point(aes(color = factor(group):factor(community)), size = 2)+
   ylab(expression(paste(delta^{15}, "N (\u2030)")))+
@@ -123,7 +123,7 @@ first.plot <- ggplot(data = demo.siber.data, aes(iso1, iso2)) +
 print(first.plot)
 
 
-## ----plot-posts----------------------------------------------------------
+## ----plot-posts---------------------------------------------------------------
 
 second.plot <- first.plot + facet_wrap(~factor(group):factor(community))
 print(second.plot)

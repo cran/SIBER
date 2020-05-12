@@ -1,4 +1,4 @@
-## ----setup, echo = FALSE-------------------------------------------------
+## ----setup, echo = FALSE------------------------------------------------------
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>", 
                       fig.width = 6, fig.height = 5)
 
@@ -6,7 +6,7 @@ library(viridis)
 palette(viridis(3))
 
 
-## ----load-data-----------------------------------------------------------
+## ----load-data----------------------------------------------------------------
 # remove previously loaded items from the current environment and remove previous graphics.
 rm(list=ls())
 graphics.off()
@@ -43,7 +43,7 @@ siber.example <- createSiberObject(demo.siber.data)
 
 
 
-## ----plot-data-----------------------------------------------------------
+## ----plot-data----------------------------------------------------------------
 # Create lists of plotting arguments to be passed onwards to each 
 # of the three plotting functions.
 community.hulls.args <- list(col = 1, lty = 1, lwd = 1)
@@ -65,7 +65,7 @@ plotSiberObject(siber.example,
                   )
 
 
-## ----summary-stats-------------------------------------------------------
+## ----summary-stats------------------------------------------------------------
 
 par(mfrow=c(1,1))
 
@@ -107,7 +107,7 @@ plotGroupEllipses(siber.example, n = 100, p.interval = 0.95, ci.mean = T,
 
 
 
-## ----layman-metrics------------------------------------------------------
+## ----layman-metrics-----------------------------------------------------------
 # A second plot provides information more suitable to comparing
 # the two communities based on the community-level Layman metrics
 
@@ -135,7 +135,7 @@ community.ML <- communityMetricsML(siber.example)
 print(community.ML)
 
 
-## ----fit-mvn-------------------------------------------------------------
+## ----fit-mvn------------------------------------------------------------------
 
 # options for running jags
 parms <- list()
@@ -156,7 +156,7 @@ priors$tau.mu <- 1.0E-3
 ellipses.posterior <- siberMVN(siber.example, parms, priors)
 
 
-## ----density-plots-------------------------------------------------------
+## ----density-plots------------------------------------------------------------
 
 # The posterior estimates of the ellipses for each group can be used to
 # calculate the SEA.B for each group.
@@ -191,7 +191,7 @@ SEA.B.modes <- lapply(
 
 
 
-## ----bayesian-layman-----------------------------------------------------
+## ----bayesian-layman----------------------------------------------------------
 
 # extract the posterior means
 mu.post <- extractPosteriorMeans(siber.example, ellipses.posterior)
