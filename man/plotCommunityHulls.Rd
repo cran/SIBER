@@ -19,11 +19,11 @@ plotCommunityHulls(
  internal call to \code{\link[graphics]{plot}} can either be specified here,
  or as additional arguments under the \code{...} method.
 \itemize{
-  \item{col}{the color of the lines of the convex hull. See 
+  \item{col}{ the color of the lines of the convex hull. See 
   \code{\link[graphics]{lines}} for more details.}
-  \item{lty}{the line type of the convex hull.See 
+  \item{lty}{ the line type of the convex hull.See 
   \code{\link[graphics]{lines}} for more details.}
-  \item{lwd}{the line width of the convex hulls. See 
+  \item{lwd}{ the line width of the convex hulls. See 
   \code{\link[graphics]{lines} for more details.}}
 }}
 

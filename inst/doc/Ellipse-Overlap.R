@@ -17,6 +17,7 @@ set.seed(1)
 
 # load SIBER
 library(SIBER)
+library(viridis)
 
 # set a new three-colour palette from the viridis package
 palette(viridis::viridis(3))

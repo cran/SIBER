@@ -6,6 +6,7 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to SIBER}
   %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteDepends{viridis}
   \usepackage[utf8]{inputenc}
 ---
 
@@ -19,7 +20,7 @@ palette(viridis(3))
 ```
 
 ## SIBER introduction and guide
-This user manual introduces the basic functionality of this standalone version of SIBER, which was previously part of the [siar](http://andrewljackson.github.io/siar) package. SIBER contains two types of analysis, although both are founded on the same principle of fitting ellipses to groups of data. The questions are very different though and it is important that you satisfy yourself with which one you want for the questions you have of your own data. There are additional learning resources available at [SIAR-examples-and-queries](http://andrewljackson.github.io/siar). N.B. these examples currently still use the SIBER functions embedded within the SIAR package, which I will update shortly, but the concepts are exactly the same.
+This user manual introduces the basic functionality of this standalone version of SIBER, which was historically part of the [siar](https://github.com/AndrewLJackson/siar) package. Note that `siar` itself is now obsolete and instead you should look to the related packages [mixsiar](https://github.com/brianstock/MixSIAR) and  [simmr](https://github.com/andrewcparnell/simmr) for the latest mixing model approaches. SIBER contains two types of analysis, although both are founded on the same principle of fitting ellipses to groups of data. The questions are very different though and it is important that you satisfy yourself with which one you want for the questions you have of your own data.
 
 ## Setting up our R session for this demonstration
 In this example, we are going to work with a bundled example dataset that I created previously using the function `generateSiberData()`. This dataset is loaded using `data("demo.siber.data")` but it is also provided as a raw *.csv file which is more usually the format you would work with when organising your own dataset for analysis using SIBER. We then use `createSiberObject()` to convert this raw data form into an object that contains information summary statistics that are useful for plotting, and a z-score transformed version of the data which is used in the model fitting process before being back-transformed using the summary statistic information.
@@ -63,7 +64,7 @@ siber.example <- createSiberObject(demo.siber.data)
 ```
 
 ## Plotting the raw data
-With the `siber` object created, we can now use various functions to create isotope biplots of the data, and also calculate some summary statistics on each group and/or community in the dataset.
+With the `siber` object created, we can now use various functions to create isotope scatterplots of the data, and also calculate some summary statistics on each group and/or community in the dataset.
 
 Community 1 comprises 3 groups and drawn as black, red and green circles
 community 2 comprises 3 groups and drawn as black, red and green triangles
@@ -87,16 +88,16 @@ Convex hulls are draw around each group independently with `group.hulls = T`.
 # of the three plotting functions.
 community.hulls.args <- list(col = 1, lty = 1, lwd = 1)
 group.ellipses.args  <- list(n = 100, p.interval = 0.95, lty = 1, lwd = 2)
-group.hull.args      <- list(lty = 2, col = "grey20")
+group.hulls.args     <- list(lty = 2, col = "grey20")
 
 
 
 par(mfrow=c(1,1))
 plotSiberObject(siber.example,
                   ax.pad = 2, 
-                  hulls = F, community.hulls.args, 
-                  ellipses = T, group.ellipses.args,
-                  group.hulls = T, group.hull.args,
+                  hulls = F, community.hulls.args = community.hulls.args, 
+                  ellipses = T, group.ellipses.args = group.ellipses.args,
+                  group.hulls = T, group.hulls.args = group.hulls.args,
                   bty = "L",
                   iso.order = c(1,2),
                   xlab = expression({delta}^13*C~'\u2030'),
