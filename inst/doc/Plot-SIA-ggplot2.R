@@ -4,7 +4,8 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 9, fig.height = 6)
 ## ----import-data--------------------------------------------------------------
 
 library(SIBER)
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 
 # import the data. Replace this line with a read.csv() or similar call
 # to you own local file.

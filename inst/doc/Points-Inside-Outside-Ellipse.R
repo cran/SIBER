@@ -5,10 +5,11 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>",
 
 ## ----gendata, echo = TRUE-----------------------------------------------------
 
-library(tidyverse)
+library(dplyr)
 library(magrittr)
-
+library(purrr)
 library(SIBER)
+library(ggplot2)
 
 # set the random seed generator so we get consistent results each time 
 # we run this code.

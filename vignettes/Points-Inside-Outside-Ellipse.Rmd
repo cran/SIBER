@@ -6,8 +6,6 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Points Inside or Outside Ellipse}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteDepends{tidyverse}
-  %\VignetteDepends{magrittr}
   \usepackage[utf8]{inputenc}
 ---
 
@@ -22,10 +20,11 @@ First we will create some random data and draw an ellipse around it, and then we
 
 ```{r gendata, echo = TRUE}
 
-library(tidyverse)
+library(dplyr)
 library(magrittr)
-
+library(purrr)
 library(SIBER)
+library(ggplot2)
 
 # set the random seed generator so we get consistent results each time 
 # we run this code.
