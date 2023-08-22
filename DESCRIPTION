@@ -1,7 +1,7 @@
 Package: SIBER
 Type: Package
 Title: Stable Isotope Bayesian Ellipses in R
-Version: 2.1.7
+Version: 2.1.8
 Authors@R: c(
     person("Andrew", "Jackson", role = c("aut", "cre"), 
     email = "jacksoan@tcd.ie",
@@ -9,7 +9,7 @@ Authors@R: c(
     person("Andrew", "Parnell", role = "aut", 
     comment = c(ORCID = "0000-0001-7956-7939"))
     )
-Depends: R (>= 4.0.0), spatstat (>= 2.0-0),
+Depends: R (>= 4.0.0)
 SystemRequirements: JAGS (>= 4.1)
 Imports: hdrcde, graphics, grDevices, mnormt, rjags, spatstat.geom,
         spatstat.utils, stats, tidyr, dplyr, ggplot2, magrittr, purrr
@@ -22,7 +22,7 @@ Language: en-GB
 LazyLoad: yes
 LazyData: true
 Encoding: UTF-8
-Packaged: 2023-02-15 17:18:34 UTC; andrewjackson
+Packaged: 2023-08-22 15:14:51 UTC; andrewjackson
 NeedsCompilation: yes
 VignetteBuilder: knitr
 RoxygenNote: 7.2.3
@@ -30,4 +30,4 @@ Author: Andrew Jackson [aut, cre] (<https://orcid.org/0000-0001-7334-0434>),
   Andrew Parnell [aut] (<https://orcid.org/0000-0001-7956-7939>)
 Maintainer: Andrew Jackson <jacksoan@tcd.ie>
 Repository: CRAN
-Date/Publication: 2023-02-15 18:10:02 UTC
+Date/Publication: 2023-08-22 17:20:02 UTC
